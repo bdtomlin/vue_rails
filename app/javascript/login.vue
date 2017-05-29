@@ -14,7 +14,7 @@
 <script>
 import axios from 'axios'
 
-const vm = {
+export default {
   data: function(){
     return {
       email: 'bdtomlin@gmail.com',
@@ -42,8 +42,6 @@ const vm = {
     }
   }
 }
-
-export default vm
 </script>
 
 <style lang="css">
