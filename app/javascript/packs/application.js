@@ -11,6 +11,9 @@ import Vue from 'vue'
 import App from '../app.vue'
 import router from '../router'
 import store from '../store'
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify)
 
 document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(document.createElement('vue-app'))

@@ -38,6 +38,7 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "vuetify": "^0.12.2",
     "webpack-dev-server": "^2.4.5"
   }
 }
