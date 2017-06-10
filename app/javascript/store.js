@@ -4,9 +4,9 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    token: null
+    token: null,
+    drawer: true
   },
-  drawer: true,
   mutations: {
     addToken(state, token) {
       state.token = token
@@ -14,8 +14,8 @@ const store = new Vuex.Store({
     removeToken(state, token) {
       state.token = null
     },
-    toggleDrawer() {
-      state.drawer = !state.drawer
+    drawer(state, val) {
+      state.drawer = val
     }
   }
 })

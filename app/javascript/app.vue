@@ -14,36 +14,42 @@
 </template> -->
 
 <template>
-  <v-app id="example-2">
-    <cv-main-nav></cv-main-nav>
-    <v-toolbar fixed class="indigo darken-4" light>
-      <v-toolbar-side-icon light @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Toolbar</v-toolbar-title>
-    </v-toolbar>
-    <main>
-      <v-container fluid>
-        <div class="title">Click on sidebar to re-open.</div>
-        <!--v-router-->
-      </v-container>
-    </main>
+  <v-app>
+    <template v-if="loggedIn">
+      <cv-main-nav></cv-main-nav>
+      <cv-main-toolbar></cv-main-toolbar>
+      <main>
+        <v-container fluid>
+          <router-view></router-view>
+        </v-container>
+      </main>
+    </template>
+    <template v-else>
+      <login></login>
+    </template>
   </v-app>
 </template>
 
 <script>
   import CvMainNav from './components/CvMainNav'
+  import CvMainToolbar from './components/CvMainToolbar'
+  import Login from './login'
 
   export default {
-    components: {CvMainNav},
+    components: {CvMainNav, CvMainToolbar, Login},
     data () {
-      return {
-        drawer: true,
-        items: [
-          { title: 'Home', icon: 'dashboard' },
-          { title: 'About', icon: 'question_answer' }
-        ],
-        mini: false,
-        right: null
+      return { }
+    },
+    computed: {
+      loggedIn: function() {
+        return this.$store.state.token !== null
       }
+    },
+    beforeCreate: function(){
+      this.$store.commit('addToken', localStorage.getItem('token'))
     }
   }
 </script>
+
+<style lang="css">
+</style>
