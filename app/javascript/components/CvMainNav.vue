@@ -7,10 +7,13 @@
   v-model="drawer">
   <v-list class="logo-list">
     <v-list-item>
-      <v-list-tile class="main-logo" avatar tag="div">
-        <!-- <v-list-tile-avatar> -->
-          <img v-bind:src="clientvineLogo" alt="logo">
-        <!-- </v-list-tile-avatar> -->
+      <v-list-tile class="logo" avatar tag="div">
+        <template v-if="mini">
+          <img class="icon-logo" v-bind:src="clientvineLogoIcon" alt="logo">
+        </template>
+        <template v-else>
+          <img class="main-logo" v-bind:src="clientvineLogo" alt="logo">
+        </template>
         <v-list-tile-content></v-list-tile-content>
         <v-list-tile-action>
           <v-btn light icon @click.native.stop="mini = !mini">
@@ -48,6 +51,7 @@
 
 <script>
 import clientvineLogo from '../images/clientvine-logo.svg'
+import clientvineLogoIcon from '../images/clientvine-logo-icon.svg'
 export default {
   data () {
     return {
@@ -57,7 +61,8 @@ export default {
         { title: 'About', icon: 'question_answer', href: '/page2' }
       ],
       mini: false,
-      clientvineLogo
+      clientvineLogo,
+      clientvineLogoIcon
     }
   },
   methods: {
@@ -84,11 +89,15 @@ export default {
 .logo-list {
   padding: 0;
 }
-.main-logo {
+.logo {
   padding-left: 0;
 }
-img {
+.main-logo {
   width: 200px;
+}
+.icon-logo {
+  width: 80px;
+  padding: 0 15px;
 }
 .navigation-drawer>.list .list__tile--active>:first-child .icon {
   color: #53b596;
