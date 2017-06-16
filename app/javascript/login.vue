@@ -5,10 +5,15 @@
         <v-card-row>
           <v-card-title>Please Log In...</v-card-title>
         </v-card-row>
+        <v-card-row v-if="invalidLogin">
+          <v-alert error v-model="invalidLogin">
+            Invalid Email/Password Combination
+          </v-alert>
+        </v-card-row>
         <v-card-row>
           <v-card-text>
-            <v-text-field v-model="email" v-on:keyup.13="submit" label="Email" required></v-text-field>
-            <v-text-field v-model="password" v-on:keyup.13="submit" label="Password" type="password" required></v-text-field>
+            <v-text-field v-model="email" @keyup.native.enter="submit" label="Email" required></v-text-field>
+            <v-text-field v-model="password" @keyup.native.enter="submit" label="Password" type="password" required></v-text-field>
           </v-card-text>
         </v-card-row>
         <v-card-row actions>
@@ -27,7 +32,8 @@ export default {
     return {
       dialog: true,
       email: 'bdtomlin@gmail.com',
-      password: 'sdfsdf'
+      password: 'sdfsdf',
+      invalidLogin: false
     }
   },
   methods: {
@@ -42,6 +48,9 @@ export default {
       .then((response) => {
         localStorage.setItem('token', response.data.jwt)
         this.$store.commit('addToken', response.data.jwt)
+      })
+      .catch((error) =>  {
+        this.invalidLogin = true
       })
     }
   },
