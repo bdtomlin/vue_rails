@@ -1,6 +1,10 @@
 {
   "name": "vue_rails",
   "private": true,
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register ./test/javascript/**/*.test.js --ui tdd",
+    "testw": "mocha --compilers js:babel-core/register ./test/javascript/**/*.test.js --ui tdd -w"
+  },
   "dependencies": {
     "autoprefixer": "^7.1.1",
     "axios": "^0.16.1",
@@ -38,6 +42,8 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "mocha": "^3.4.2",
     "vuetify": "^0.12.7",
     "webpack-dev-server": "^2.4.5"
   }
